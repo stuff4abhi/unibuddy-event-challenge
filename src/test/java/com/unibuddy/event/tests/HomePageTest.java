@@ -1,8 +1,7 @@
 package com.unibuddy.event.tests;
 
-import com.opencsv.exceptions.CsvValidationException;
 import com.unibuddy.event.BaseDriver;
-import com.unibuddy.event.utilities.csvUtility;
+import com.unibuddy.event.utilities.CsvUtility;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
@@ -15,7 +14,7 @@ public class HomePageTest extends BaseDriver {
 
     @Description("Basic validations on Home Page")
     @Test
-    public void homePageTest(){
+    public void homePageTest() throws IOException {
         WebDriver driver = getDriver();
 
         // Validate the HomePage of Unibuddy-event Home page
@@ -26,13 +25,5 @@ public class HomePageTest extends BaseDriver {
         loginSignUpPage.verifySignUpButton();
         loginSignUpPage.verifyLoginButton();
 
-        csvUtility csv = new csvUtility();
-        try {
-            csv.csvReader();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CsvValidationException e) {
-            e.printStackTrace();
-        }
     }
 }

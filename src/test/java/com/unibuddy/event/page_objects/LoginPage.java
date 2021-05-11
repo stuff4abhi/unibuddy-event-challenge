@@ -1,16 +1,20 @@
 package com.unibuddy.event.page_objects;
 
 import com.unibuddy.event.helpers.Urls;
+import com.unibuddy.event.utilities.CsvUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import com.unibuddy.event.page_elements.LoginPageElements;
+
+import java.io.IOException;
 
 public class LoginPage extends BasePage{
 
     private final String url = Urls.LOGIN.getValue();
+    private final String dataFile = "registrationData.csv";
+    private final CsvUtility csv = new CsvUtility(dataFile);
 
-    public LoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) throws IOException {
         super(driver);
     }
 
@@ -45,8 +49,8 @@ public class LoginPage extends BasePage{
         Assert.assertFalse(driver.findElement(LoginPageElements.SUBMIT.getBy()).isEnabled());
     }
 
-    public void enterUserCredentials(){
-        presenceOf(LoginPageElements.EMAIL.getBy()).sendKeys("sa@mal.com");
-        presenceOf(LoginPageElements.PASSWORD.getBy()).sendKeys("password");
+    public void enterUserCredentials(int csvRow){
+        presenceOf(LoginPageElements.EMAIL.getBy()).sendKeys(csv.getCellValue(csvRow, LoginPageElements.EMAIL.toString()));
+        presenceOf(LoginPageElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, LoginPageElements.PASSWORD.toString()));
     }
 }

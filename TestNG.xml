@@ -7,6 +7,8 @@
             <class name="com.unibuddy.event.tests.RegistrationTest"/>
             <class name="com.unibuddy.event.tests.LoginPageTest"/>
             <class name="com.unibuddy.event.tests.Registration2Test"/>
+            <class name="com.unibuddy.event.tests.DashboardPageTest"/>
+            <class name="com.unibuddy.event.tests.FeedChatTest"/>
         </classes>
     </test>
 </suite>

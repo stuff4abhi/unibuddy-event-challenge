@@ -4,7 +4,6 @@ import com.unibuddy.event.helpers.Urls;
 import com.unibuddy.event.utilities.CsvUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import com.unibuddy.event.page_elements.RegistrationElements;
 
@@ -53,11 +52,11 @@ public class RegistrationPage extends BasePage {
 
     public void registrationMain(int csvRow) throws IOException {
         CsvUtility csv = new CsvUtility(dataFile);
-        driver.findElement(RegistrationElements.FIRSTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "firstName"));
-        driver.findElement(RegistrationElements.LASTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "lastName"));
-        driver.findElement(RegistrationElements.EMAIL.getBy()).sendKeys(csv.getCellValue(csvRow, "email"));
-        driver.findElement(RegistrationElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "password"));
-        driver.findElement(RegistrationElements.CONFIRM_PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "confirmPassword"));
+        driver.findElement(RegistrationElements.FIRSTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "FIRSTNAME"));
+        driver.findElement(RegistrationElements.LASTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "LASTNAME"));
+        driver.findElement(RegistrationElements.EMAIL.getBy()).sendKeys(csv.getCellValue(csvRow, "EMAIL"));
+        driver.findElement(RegistrationElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "PASSWORD"));
+        driver.findElement(RegistrationElements.CONFIRM_PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "CONFIRM_PASSWORD"));
         driver.findElement(RegistrationElements.POLICY_CHECK.getBy()).click();
         driver.findElement(RegistrationElements.SUBMIT.getBy()).click();
     }

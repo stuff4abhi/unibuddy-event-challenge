@@ -1,2 +1,2 @@
-firstName,lastName,email,password,confirmPassword,ENTRY_DATE,COUNTRY,LEVEL,AREA_OF_STUDY,TEST_DATE,DOB,FAVOURITE_CHEESE
-testFirst,testLast,testEmail@mail.com,testPassword,testPassword,September 2021,India,a,Computer Science,10/10/2021,06/11/1990,mozarella
+FIRSTNAME,LASTNAME,EMAIL,PASSWORD,CONFIRM_PASSWORD,ENTRY_DATE,COUNTRY,LEVEL,AREA_OF_STUDY,TEST_DATE,DOB,FAVOURITE_CHEESE
+testFirst,testLast,tom@jerry.com,password,password,September 2021,India,a,Computer Science,10/10/2021,06/11/1990,mozarella

@@ -7,10 +7,12 @@ import org.testng.annotations.Test;
 import com.unibuddy.event.page_objects.HomePage;
 import com.unibuddy.event.page_objects.LoginPage;
 
+import java.io.IOException;
+
 public class LoginPageTest extends BaseDriver {
     @Description("Basic validations on Login Page")
     @Test
-    public void loginPageTest(){
+    public void loginPageTest() throws IOException {
         WebDriver driver = getDriver();
         HomePage homePage = new HomePage(driver);
         homePage.launchHomePage();

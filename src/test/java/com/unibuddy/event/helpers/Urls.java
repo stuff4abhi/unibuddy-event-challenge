@@ -5,7 +5,8 @@ public enum Urls {
     REGISTRATION_MAIN("https://events-staging.unibuddy.co/your-university/my-first-event/auth/register"),
     REGISTRATION_SECOND("https://events-staging.unibuddy.co/your-university/my-first-event/auth/register2"),
     LOGIN("https://events-staging.unibuddy.co/your-university/my-first-event/auth/login"),
-    RESET_PASSWORD("https://events-staging.unibuddy.co/your-university/my-first-event/auth/reset");
+    RESET_PASSWORD("https://events-staging.unibuddy.co/your-university/my-first-event/auth/reset"),
+    DASHBOARD("https://events-staging.unibuddy.co/your-university/my-first-event/chat");
 
     private String url;
 

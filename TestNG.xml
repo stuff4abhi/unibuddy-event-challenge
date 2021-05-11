@@ -9,6 +9,7 @@
             <class name="com.unibuddy.event.tests.Registration2Test"/>
             <class name="com.unibuddy.event.tests.DashboardPageTest"/>
             <class name="com.unibuddy.event.tests.FeedChatTest"/>
+            <class name="com.unibuddy.event.tests.DirectChatPageTest"/>
         </classes>
     </test>
 </suite>

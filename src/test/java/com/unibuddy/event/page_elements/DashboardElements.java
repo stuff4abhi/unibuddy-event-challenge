@@ -7,7 +7,7 @@ public enum DashboardElements {
     FEED_RED(new By.ByXPath("//*[text()='red']")),
     FEED_GREEN(new By.ByXPath("//*[text()='green']")),
     DIRECT_MESSAGES(new By.ByXPath("//*[text()='Direct Messages']")),
-    LOGOUT(new By.ByXPath("//*[@aria-label='Logout']//*[name()='svg']/*[name()='g']"))
+    LOGOUT(new By.ByXPath("//*[@aria-label='Logout']//*[name()='svg']"))
     ;
 
     private final By by;

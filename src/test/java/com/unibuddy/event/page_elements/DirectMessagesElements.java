@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 public enum DirectMessagesElements {
     SEND(new By.ById("send")),
     CHAT_INPUT(new By.ById("chat-input")),
+    PROFILE_VIEW(new By.ByXPath("//*[@data-test-id='profile-view']")),
     LAST_MESSAGE(new By.ByXPath("//*[@data-test-id='message-id'][last()]//span/span")),
     MY_MESSAGE(new By.ByXPath("//*[@data-test-id='message-id'][last()]//span/span[text()='My message']")),
     ;

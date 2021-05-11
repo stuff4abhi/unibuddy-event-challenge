@@ -23,29 +23,31 @@ public class HomePage extends BasePage {
         driver.get(getPageUrl());
     }
 
+    public void varifyAllElements(){
+        Assert.assertTrue(presenceOf(HomePageElements.HEADING.getBy()).isDisplayed());
+        verifyLoginButton();
+        verifySignUpButton();
+    }
+
     public void verifySignUpButton(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(HomePageElements.SIGNUP.getBy()));
-        WebElement signUp = driver.findElement(HomePageElements.SIGNUP.getBy());
+        WebElement signUp = presenceOf(HomePageElements.SIGNUP.getBy());
         Assert.assertEquals(signUp.getText(), "Sign up");
         Assert.assertTrue(signUp.isEnabled());
         Assert.assertEquals(signUp.getAttribute("href"), Urls.REGISTRATION_MAIN.getValue());
     }
 
     public void verifyLoginButton(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(HomePageElements.LOGIN.getBy()));
-        WebElement login = driver.findElement(HomePageElements.LOGIN.getBy());
+        WebElement login = presenceOf(HomePageElements.LOGIN.getBy());
         Assert.assertEquals(login.getText(), "Log in");
         Assert.assertTrue(login.isEnabled());
         Assert.assertEquals(login.getAttribute("href"), Urls.LOGIN.getValue());
     }
 
     public void clickForSignUp(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(HomePageElements.SIGNUP.getBy()));
-        driver.findElement(HomePageElements.SIGNUP.getBy()).click();
+        presenceOf(HomePageElements.SIGNUP.getBy()).click();
     }
 
     public void clickForLogin(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(HomePageElements.LOGIN.getBy()));
-        driver.findElement(HomePageElements.LOGIN.getBy()).click();
+        presenceOf(HomePageElements.LOGIN.getBy()).click();
     }
 }

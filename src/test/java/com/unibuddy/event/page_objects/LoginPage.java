@@ -23,30 +23,25 @@ public class LoginPage extends BasePage{
     }
 
     public void clickSignUp(){
-        presenceOf(LoginPageElements.SIGN_UP.getBy());
-        driver.findElement(LoginPageElements.SIGN_UP.getBy()).click();
+        presenceOf(LoginPageElements.SIGN_UP.getBy()).click();
     }
 
     public void clickLogin(){
-        presenceOf(LoginPageElements.SUBMIT.getBy());
-        driver.findElement(LoginPageElements.SUBMIT.getBy()).click();
+        presenceOf(LoginPageElements.SUBMIT.getBy()).click();
     }
 
     public void verifyAllHrefs(){
-        presenceOf(LoginPageElements.SUBMIT.getBy());
-        Assert.assertEquals(driver.findElement(LoginPageElements.SIGN_UP.getBy()).getAttribute("href"), Urls.REGISTRATION_MAIN.getValue());
-        Assert.assertEquals(driver.findElement(LoginPageElements.RESET_PASSWORD.getBy()).getAttribute("href"), Urls.RESET_PASSWORD.getValue());
+        Assert.assertEquals(presenceOf(LoginPageElements.SIGN_UP.getBy()).getAttribute("href"), Urls.REGISTRATION_MAIN.getValue());
+        Assert.assertEquals(presenceOf(LoginPageElements.RESET_PASSWORD.getBy()).getAttribute("href"), Urls.RESET_PASSWORD.getValue());
     }
 
     public void verifyAllFields(){
-        presenceOf(LoginPageElements.EMAIL.getBy());
-        Assert.assertTrue(driver.findElement(LoginPageElements.EMAIL.getBy()).isDisplayed());
-        Assert.assertTrue(driver.findElement(LoginPageElements.PASSWORD.getBy()).isDisplayed());
+        Assert.assertTrue(presenceOf(LoginPageElements.EMAIL.getBy()).isDisplayed());
+        Assert.assertTrue(presenceOf(LoginPageElements.PASSWORD.getBy()).isDisplayed());
     }
 
     public void verifySubmitIsDisabled() {
-        presenceOf(LoginPageElements.SUBMIT.getBy());
-        Assert.assertFalse(driver.findElement(LoginPageElements.SUBMIT.getBy()).isEnabled());
+        Assert.assertFalse(presenceOf(LoginPageElements.SUBMIT.getBy()).isEnabled());
     }
 
     public void enterUserCredentials(int csvRow){

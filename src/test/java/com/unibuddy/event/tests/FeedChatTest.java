@@ -14,7 +14,7 @@ import java.io.IOException;
 public class FeedChatTest extends BaseDriver {
     @Description("Validations on FeedChat")
     @Test
-    public void feedChatPageTest() throws IOException, InterruptedException {
+    public void feedChatPageTest() throws IOException {
         WebDriver driver = getDriver();
         // Home page
         HomePage homePage = new HomePage(driver);
@@ -38,5 +38,9 @@ public class FeedChatTest extends BaseDriver {
         feedPage.verifyFeedPageHeading("red");
         feedPage.sendMessage("Test String");
         feedPage.validateLastMessage("Test String");
+
+        // Logout
+        dashboardPage.clickLogOut();
+        homePage.varifyAllElements();
     }
 }

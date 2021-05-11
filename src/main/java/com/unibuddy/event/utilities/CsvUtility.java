@@ -12,9 +12,9 @@ public class CsvUtility {
 
     private final List<CSVRecord> records;
 
-    public CsvUtility(String path) throws IOException {
+    public CsvUtility(String fileName) throws IOException {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        FileReader reader = new FileReader(Objects.requireNonNull(classLoader.getResource(path)).getFile());
+        FileReader reader = new FileReader(Objects.requireNonNull(classLoader.getResource(fileName)).getFile());
         CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                 .withFirstRecordAsHeader()
                 .withIgnoreHeaderCase()
@@ -29,7 +29,6 @@ public class CsvUtility {
         } catch (IllegalArgumentException e){
             value = "";
         }
-
         return value;
     }
 

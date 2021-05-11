@@ -1,15 +1,19 @@
 package com.unibuddy.event.page_objects;
 
 import com.unibuddy.event.helpers.Urls;
+import com.unibuddy.event.utilities.CsvUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import com.unibuddy.event.page_elements.RegistrationElements;
 
+import java.io.IOException;
+
 public class RegistrationPage extends BasePage {
 
     private final String url = Urls.REGISTRATION_MAIN.getValue();
+    private final String dataFile = "registrationData.csv";
 
     public RegistrationPage(WebDriver driver){
         super(driver);
@@ -20,12 +24,12 @@ public class RegistrationPage extends BasePage {
     }
 
     public void verifyPolicyCheckBox(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(RegistrationElements.POLICY_CHECK.getBy()));
+        presenceOf(RegistrationElements.POLICY_CHECK.getBy());
         Assert.assertFalse(driver.findElement(RegistrationElements.POLICY_CHECK.getBy()).isSelected(), "Policy checkbox already marked");
     }
 
     public void verifyAllMandatoryFields(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(RegistrationElements.FIRSTNAME.getBy()));
+        presenceOf(RegistrationElements.FIRSTNAME.getBy());
         Assert.assertEquals(driver.findElement(RegistrationElements.FIRSTNAME.getBy()).getAttribute("required"), "true");
         Assert.assertEquals(driver.findElement(RegistrationElements.LASTNAME.getBy()).getAttribute("required"), "true");
         Assert.assertEquals(driver.findElement(RegistrationElements.EMAIL.getBy()).getAttribute("required"), "true");
@@ -35,24 +39,25 @@ public class RegistrationPage extends BasePage {
     }
 
     public void verifyLoginLink(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(RegistrationElements.LOGIN_LINK.getBy()));
+        presenceOf(RegistrationElements.LOGIN_LINK.getBy());
         WebElement login = driver.findElement(RegistrationElements.LOGIN_LINK.getBy());
         Assert.assertTrue(login.isDisplayed());
         Assert.assertEquals(login.getAttribute("href"), Urls.LOGIN.getValue());
     }
 
     public void verifySubmitButton(){
-        wait.until(ExpectedConditions.presenceOfElementLocated(RegistrationElements.SUBMIT.getBy()));
+        presenceOf(RegistrationElements.SUBMIT.getBy());
         WebElement submit = driver.findElement(RegistrationElements.SUBMIT.getBy());
         Assert.assertTrue(submit.isDisplayed());
     }
 
-    public void registrationMain(){
-        driver.findElement(RegistrationElements.FIRSTNAME.getBy()).sendKeys("Kalagarla");
-        driver.findElement(RegistrationElements.LASTNAME.getBy()).sendKeys("Abhiram");
-        driver.findElement(RegistrationElements.EMAIL.getBy()).sendKeys("abhik@gmail.com");
-        driver.findElement(RegistrationElements.PASSWORD.getBy()).sendKeys("k012345");
-        driver.findElement(RegistrationElements.CONFIRM_PASSWORD.getBy()).sendKeys("k012345");
+    public void registrationMain(int csvRow) throws IOException {
+        CsvUtility csv = new CsvUtility(dataFile);
+        driver.findElement(RegistrationElements.FIRSTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "firstName"));
+        driver.findElement(RegistrationElements.LASTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "lastName"));
+        driver.findElement(RegistrationElements.EMAIL.getBy()).sendKeys(csv.getCellValue(csvRow, "email"));
+        driver.findElement(RegistrationElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "password"));
+        driver.findElement(RegistrationElements.CONFIRM_PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "confirmPassword"));
         driver.findElement(RegistrationElements.POLICY_CHECK.getBy()).click();
         driver.findElement(RegistrationElements.SUBMIT.getBy()).click();
     }

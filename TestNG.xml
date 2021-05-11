@@ -4,8 +4,9 @@
     <test name="Basic Test">
         <classes>
             <class name="com.unibuddy.event.tests.HomePageTest"/>
-<!--            <class name="com.unibuddy.event.tests.RegistrationTest"/>-->
-<!--            <class name="com.unibuddy.event.tests.LoginPageTest"/>-->
+            <class name="com.unibuddy.event.tests.RegistrationTest"/>
+            <class name="com.unibuddy.event.tests.LoginPageTest"/>
+            <class name="com.unibuddy.event.tests.Registration2Test"/>
         </classes>
     </test>
 </suite>

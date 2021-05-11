@@ -6,6 +6,7 @@ import com.unibuddy.event.page_objects.FeedPage;
 import com.unibuddy.event.page_objects.HomePage;
 import com.unibuddy.event.page_objects.LoginPage;
 import io.qameta.allure.Description;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
@@ -36,8 +37,11 @@ public class FeedChatTest extends BaseDriver {
         FeedPage feedPage = new FeedPage(driver);
         feedPage.verifyElements();
         feedPage.verifyFeedPageHeading("red");
-        feedPage.sendMessage("Test String");
-        feedPage.validateLastMessage("Test String");
+        // Generate Unique Message
+        String textInput = "Test Message - " + RandomStringUtils.randomAlphanumeric(10);
+        // Send Message
+        feedPage.sendMessage(textInput);
+        feedPage.validateLastMessage(textInput);
 
         // Logout
         dashboardPage.clickLogOut();

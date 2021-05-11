@@ -3,6 +3,7 @@ package com.unibuddy.event.tests;
 import com.unibuddy.event.BaseDriver;
 import com.unibuddy.event.page_objects.*;
 import io.qameta.allure.Description;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,8 +42,10 @@ public class DirectChatPageTest extends BaseDriver {
         // Direct chat
         DirectChatPage directChatPage = new DirectChatPage(driver);
         directChatPage.validateElements();
-        directChatPage.sendMessage("Test Message");
-        directChatPage.validateLastMessage("Test Message");
+        // Generate Unique Message
+        String textInput = "Test Message - " + RandomStringUtils.randomAlphanumeric(10);
+        directChatPage.sendMessage(textInput);
+        directChatPage.validateLastMessage(textInput);
 
         // Logout
         dashboardPage.clickLogOut();

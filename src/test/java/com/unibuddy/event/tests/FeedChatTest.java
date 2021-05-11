@@ -45,6 +45,8 @@ public class FeedChatTest extends BaseDriver {
 
         // Logout
         dashboardPage.clickLogOut();
+
+        // Verify Home Page
         homePage.varifyAllElements();
     }
 }

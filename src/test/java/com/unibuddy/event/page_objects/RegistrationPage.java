@@ -13,8 +13,9 @@ public class RegistrationPage extends BasePage {
 
     private final String url = Urls.REGISTRATION_MAIN.getValue();
     private final String dataFile = "registrationData.csv";
+    private final CsvUtility csv = new CsvUtility(dataFile);
 
-    public RegistrationPage(WebDriver driver){
+    public RegistrationPage(WebDriver driver) throws IOException {
         super(driver);
     }
 
@@ -50,14 +51,33 @@ public class RegistrationPage extends BasePage {
         Assert.assertTrue(submit.isDisplayed());
     }
 
-    public void registrationMain(int csvRow) throws IOException {
-        CsvUtility csv = new CsvUtility(dataFile);
-        driver.findElement(RegistrationElements.FIRSTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "FIRSTNAME"));
-        driver.findElement(RegistrationElements.LASTNAME.getBy()).sendKeys(csv.getCellValue(csvRow, "LASTNAME"));
-        driver.findElement(RegistrationElements.EMAIL.getBy()).sendKeys(csv.getCellValue(csvRow, "EMAIL"));
-        driver.findElement(RegistrationElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "PASSWORD"));
-        driver.findElement(RegistrationElements.CONFIRM_PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, "CONFIRM_PASSWORD"));
-        driver.findElement(RegistrationElements.POLICY_CHECK.getBy()).click();
-        driver.findElement(RegistrationElements.SUBMIT.getBy()).click();
+    private void fillFirstName(int csvRow){
+        String data = csv.getCellValue(csvRow, RegistrationElements.FIRSTNAME.toString());
+        presenceOf(RegistrationElements.FIRSTNAME.getBy()).sendKeys(data);
+    }
+
+    private void fillLastName(int csvRow){
+        String data = csv.getCellValue(csvRow, RegistrationElements.LASTNAME.toString());
+        presenceOf(RegistrationElements.LASTNAME.getBy()).sendKeys(data);
+    }
+
+    private void fillPassword(int csvRow){
+        String data = csv.getCellValue(csvRow, RegistrationElements.PASSWORD.toString());
+        presenceOf(RegistrationElements.PASSWORD.getBy()).sendKeys(data);
+    }
+
+    private void fillConfPassword(int csvRow){
+        String data = csv.getCellValue(csvRow, RegistrationElements.CONFIRM_PASSWORD.toString());
+        presenceOf(RegistrationElements.CONFIRM_PASSWORD.getBy()).sendKeys(data);
+    }
+
+    public void registerWith(int csvRow, String uniqueId) {
+        fillFirstName(csvRow);
+        fillLastName(csvRow);
+        presenceOf(RegistrationElements.EMAIL.getBy()).sendKeys(uniqueId);
+        fillPassword(csvRow);
+        fillConfPassword(csvRow);
+        presenceOf(RegistrationElements.POLICY_CHECK.getBy()).click();
+        presenceOf(RegistrationElements.SUBMIT.getBy()).click();
     }
 }

@@ -30,5 +30,10 @@ public class DashboardPageTest extends BaseDriver {
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.verifyElements();
 
+        // Logout
+        dashboardPage.clickLogOut();
+        // Verify Home Page
+        homePage.varifyAllElements();
+
     }
 }

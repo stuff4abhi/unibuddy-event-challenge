@@ -48,4 +48,9 @@ public class LoginPage extends BasePage{
         presenceOf(LoginPageElements.EMAIL.getBy()).sendKeys(csv.getCellValue(csvRow, LoginPageElements.EMAIL.toString()));
         presenceOf(LoginPageElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, LoginPageElements.PASSWORD.toString()));
     }
+
+    public void enterUserCredentialsWithId(int csvRow, String uniqueId){
+        presenceOf(LoginPageElements.EMAIL.getBy()).sendKeys(uniqueId);
+        presenceOf(LoginPageElements.PASSWORD.getBy()).sendKeys(csv.getCellValue(csvRow, LoginPageElements.PASSWORD.toString()));
+    }
 }

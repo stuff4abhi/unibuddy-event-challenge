@@ -14,7 +14,7 @@ import java.io.IOException;
 public class End2EndTest extends BaseDriver {
     @Description("Validations on End to End Test")
     @Test
-    public void directChatPageTest() throws IOException {
+    public void end2EndTest() throws IOException {
         WebDriver driver = getDriver();
         // ---------------------------       SignUp and logout      ------------------------
         // Home page

@@ -1,9 +1,8 @@
 package com.unibuddy.event;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.unibuddy.event.drivers.DriverConfigs;
 import com.unibuddy.event.listeners.ScreenShotListener;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -11,27 +10,29 @@ import org.testng.annotations.Listeners;
 @Listeners(ScreenShotListener.class)
 public class BaseDriver {
 
-    private static WebDriver driver;
+    private static final ThreadLocal<RemoteWebDriver> drivers = new ThreadLocal<>();
 
     @BeforeClass
     public void setupClass() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        drivers.set(driverSetUp());
     }
 
-    public static WebDriver getDriver() {
-        return driver;
+    public static RemoteWebDriver getDriver() {
+        return drivers.get();
     }
 
     @AfterClass
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
+        if (getDriver() != null) {
+            getDriver().quit();
         }
     }
 
-//    public void driverSetUp()
-//    {
-//        driver=new ChromeDriver(initDriverOptions());
-//    }
+    private RemoteWebDriver driverSetUp()
+    {
+        DriverConfigs driverConfig = DriverConfigs.CHROME;
+        String browser = System.getProperty("browser", driverConfig.toString()).toUpperCase();
+        driverConfig = DriverConfigs.valueOf(browser);
+        return driverConfig.getWebDriver();
+    }
 }
